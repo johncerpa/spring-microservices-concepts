@@ -22,6 +22,7 @@ public class ApiGatewayConfiguration {
 
         return builder.routes()
                 .route(routeFunction)
+                // .path().uri() asks the discovery service for currency-exchange service and then redirects to that service
                 .route(p -> p.path("/currency-exchange/**").uri("lb://currency-exchange"))
                 .route(p -> p.path("/currency-conversion/**").uri("lb://currency-conversion"))
                 .route(p -> p.path("/currency-conversion-feign/**").uri("lb://currency-conversion"))

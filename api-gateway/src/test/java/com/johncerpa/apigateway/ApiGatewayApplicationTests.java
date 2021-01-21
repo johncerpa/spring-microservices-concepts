@@ -8,6 +8,9 @@ class ApiGatewayApplicationTests {
 
 	@Test
 	void contextLoads() {
+
+		System.out.println("Hello world");
+
 	}
 
 }
