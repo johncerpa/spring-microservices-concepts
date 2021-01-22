@@ -16,7 +16,7 @@ public class CurrencyConversionController {
     @Autowired
     private CurrencyExchangeProxy proxy;
 
-    @GetMapping("currency-conversion/from/{from}/to/{to}/quantity/{quantity}")
+    @GetMapping("/currency-conversion/from/{from}/to/{to}/quantity/{quantity}")
     public CurrencyConversion currencyConversion(@PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity) {
         final String url = "http://localhost:8000/currency-exchange/from/{from}/to/{to}";
 
@@ -40,7 +40,7 @@ public class CurrencyConversionController {
         );
     }
 
-    @GetMapping("currency-conversion-feign/from/{from}/to/{to}/quantity/{quantity}")
+    @GetMapping("/currency-conversion-feign/from/{from}/to/{to}/quantity/{quantity}")
     public CurrencyConversion currencyConversionFeign(@PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity) {
         CurrencyConversion currencyConversion = proxy.getExchangeValue(from, to);
 
@@ -51,6 +51,11 @@ public class CurrencyConversionController {
             quantity.multiply(currencyConversion.getConversionMultiple()),
             currencyConversion.getEnvironment()
         );
+    }
+
+    @GetMapping("/hello-world")
+    public String helloWorld() {
+        return "Hello world";
     }
 
 }
